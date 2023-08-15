@@ -6,6 +6,15 @@ return {
 		config = true,
 	},
 
+	{
+		"max397574/better-escape.nvim",
+		lazy = false,
+		opts = {
+			mapping = { "jk", "jj" },
+		},
+		config = true,
+	},
+
 	-- THEME
 	{
 		"catppuccin/nvim",
@@ -95,6 +104,81 @@ return {
 		},
 		config = function()
 			require("plugins.tree")
+		end,
+	},
+
+	-- LSP Core
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false,
+		dependencies = {
+			"mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+		},
+		servers = nil,
+	},
+	{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		keys = {
+			{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+		},
+	},
+
+	-- LSP CMP
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-calc",
+			"saadparwaiz1/cmp_luasnip",
+			{ "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
+			{
+				"David-Kunz/cmp-npm",
+				config = function()
+					require("plugins.cmp-npm")
+				end,
+			},
+			{
+				"zbirenbaum/copilot-cmp",
+				cond = BzVim.plugins.ai.copilot.enabled,
+				config = function()
+					require("copilot_cmp").setup()
+				end,
+			},
+		},
+		config = function()
+			require("plugins.cmp")
+		end,
+	},
+
+	-- LSP Addons
+	{ "onsails/lspkind-nvim" },
+
+	-- AI
+	{
+		"jcdickinson/codeium.nvim",
+		cond = BzVim.plugins.ai.codeium.enabled,
+		event = "InsertEnter",
+		cmd = "Codeium",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		config = true,
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cond = BzVim.plugins.ai.copilot.enabled,
+		event = "InsertEnter",
+		config = function()
+			require("plugins.copilot")
 		end,
 	},
 }
