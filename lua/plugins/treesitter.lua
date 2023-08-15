@@ -1,0 +1,20 @@
+require("nvim-treesitter.configs").setup({
+	ensure_instgalled = {
+		"tsx",
+		"typescript",
+		"javascript",
+		"html",
+		"css",
+		"vue",
+		"astro",
+		"svelte",
+		"gitcommit",
+		"graphql",
+		"json",
+		"json5",
+		"lua",
+		"markdown",
+		"prisma",
+		"vim",
+	},
+})
