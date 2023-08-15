@@ -14,18 +14,21 @@ return {
 		priority = 1000,
 		opts = {
 			flavour = "frappe",
-            integrations = {
-                alpha = true
-            }
+			integrations = {
+				alpha = true,
+				telescope = {
+					enabled = true,
+				},
+			},
 		},
 	},
 
 	{
 		"goolord/alpha-nvim",
-        event = "VimEnter",
+		event = "VimEnter",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-            require("plugins.alpha")
+			require("plugins.alpha")
 		end,
 	},
 
@@ -55,6 +58,23 @@ return {
 	},
 
 	-- Navigating Stuff
+	{
+		"nvim-pack/nvim-spectre",
+		lazy = true,
+		keys = {
+			{
+				"<Leader>pr",
+				"<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
+				desc = "refactor",
+			},
+			{
+				"<Leader>pr",
+				"<cmd>lua require('spectre').open_visual()<CR>",
+				mode = "v",
+				desc = "refactor",
+			},
+		},
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = false,

@@ -10,4 +10,5 @@ local icons = require("utils.icons")
 
 BzVim = {
 	colorscheme = "catppuccin",
+	icons = icons,
 }
