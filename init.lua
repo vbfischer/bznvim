@@ -1,4 +1,6 @@
 require("config.BzVim")
+require("utils.globals")
+
 require("config.options")
 
 require("config.lazy")

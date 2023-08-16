@@ -1,5 +1,6 @@
 -- Diagnostic config
 
+-- Custom codes
 local codes = {
 	-- Lua
 	no_matching_function = {
@@ -79,10 +80,16 @@ local codes = {
 	},
 }
 
+-- Configure diagnostics display formats, etc
 vim.diagnostic.config({
+	-- Options for floating windows
 	float = {
+		-- Include the diagnostic source in virtual text
 		source = false,
+
+		-- function that takes a diagnostic as input, returns string
 		format = function(diagnostic)
+			-- diagnostic table
 			local code = diagnostic and diagnostic.user_data and diagnostic.user_data.lsp.code
 
 			if not diagnostic.source or not code then
@@ -108,11 +115,14 @@ vim.diagnostic.config({
 			return string.format("%s [%s]", diagnostic.message, diagnostic.source)
 		end,
 	},
+
+	-- sort diagnostics by severity
 	severity_sort = true,
-	signs = true,
+
 	underline = true,
-	update_in_insert = false,
+
 	virtual_text = {
+		-- prepend diagnostics with this
 		prefix = BzVim.icons.circle,
 	},
 })

@@ -10,6 +10,11 @@ local icons = require("utils.icons")
 
 BzVim = {
 	colorscheme = "catppuccin",
+	ui = {
+		float = {
+			border = "rounded",
+		},
+	},
 	plugins = {
 		ai = {
 			chatgpt = {
@@ -30,4 +35,7 @@ BzVim = {
 		},
 	},
 	icons = icons,
+	lsp = {
+		virtual_text = true, -- show virtual text (errors, warnings, info) inline messages
+	},
 }

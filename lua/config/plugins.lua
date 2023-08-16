@@ -161,6 +161,30 @@ return {
 	-- LSP Addons
 	{ "onsails/lspkind-nvim" },
 
+	{
+		"pmizio/typescript-tools.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		ft = { "typescript", "typescriptreact" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			require("plugins.typescript-tools")
+		end,
+	},
+
+	-- Code Folding Fun
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
+		config = function()
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+			vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+		end,
+	},
+
 	-- AI
 	{
 		"jcdickinson/codeium.nvim",
